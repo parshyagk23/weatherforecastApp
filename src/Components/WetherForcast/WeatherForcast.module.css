@@ -1,0 +1,128 @@
+.weathercontainer {
+    width: 100vw;
+    height: 100vh;
+    background-repeat:no-repeat;
+    background-size:100vw 100vh;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+.temp{
+    position: absolute;
+    bottom: 80px;
+    left: 40px;
+    width: 48vw;
+
+}
+.citytemp{
+    display: flex;
+    gap: 10px;
+    align-items: end;
+}
+
+.citytemp h1 {
+    margin: 0;
+    font-size: 100px;
+    font-weight: 400;
+}
+.citydata{
+    display: flex;
+    align-items: end;
+}
+
+.citydata h2,p{
+    margin: 0;
+}
+.citydata h2{
+    width: 250px;
+    font-size: 45px;
+    font-weight: 400;
+}
+
+.weatherdetails{
+    width: 400px;
+    height: 85vh;
+    backdrop-filter:blur(20px);
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    padding-left: 50px;
+    padding-top: 30px;
+    border-radius: 20px;
+}
+.weatherdetails p{
+    font-size: 18px; 
+   
+}
+.weatherdetails h4{
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 400;
+
+}
+.weathers{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 20px;
+}
+.weathers p{
+    color: #ffffff9a;
+}
+.weathers b{
+    width: 70px;
+    color: #fff;
+    font-weight: 400;
+}
+.weathers span{
+    width: 160px;
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width:800px){
+    .temp{
+        position: absolute;
+        top: 80px;
+        left: 40px;
+        width: 48vw;
+    }
+    .weatherdetails{
+        height: 40vh;
+        bottom: 20px;
+        top: inherit;
+        
+    }
+}
+
+@media (max-width:600px){
+
+    .temp{
+        top: 25px;
+    }
+    .citytemp{
+        display: inline;
+    }
+    .citytemp h1{
+        font-size: 55px;
+    }
+    .citydata h2{
+        width: 210px;
+        font-size: 35px;
+    }
+    .citydata p{
+        font-size: 15px;
+    }
+    .weatherdetails{
+        height: 52vh;
+        width: 81vw;
+        padding-left: 20px;
+        padding-top: 0;
+        margin: 0 auto;
+    }
+    .weathers span {
+        width: 117px;
+        display: flex;
+        gap: 25px;
+    }
+
+}

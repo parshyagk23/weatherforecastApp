@@ -1,0 +1,197 @@
+
+.loader {
+    width: 120px;
+    height: 20px;
+    margin: 0 auto;
+    margin-top: 20px;
+    -webkit-mask:linear-gradient(90deg,#000 70%,#0000 0) 0/20%;
+    mask: linear-gradient(90deg,#000 70%,#0000 0) 0/20%;
+    background:linear-gradient(#000 0 0) 0/0% no-repeat #ddd;
+    animation: l4 2s infinite steps(6);
+  }
+  @keyframes l4 {
+      100% {background-size:120%}
+  }
+  .bodybg{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../assets/imgs/loc.jpg');
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+  }
+
+.maincontainer{
+    width: 80vw;
+    margin: 0 auto;
+    font-family: 'poppins', sans-serif;
+    
+}
+.searchsection{
+    width: 70vw;
+    height: 130px;
+    margin: 20px auto;
+    border-radius: 20px;
+    background-image: url('../../assets//imgs//locImg.jpg') ;
+    padding-top: 4px;
+    
+}
+.searchinput{
+    display: flex;
+    gap: 10px;
+    width: 55vw;
+    height: 40px;
+    margin: 9px auto;
+    border-bottom: 2px solid white;
+    border-radius: 20px;
+    
+}
+.searchinput input{
+    width: 47vw;
+    outline: none;
+    font-size: 23px;
+    border: none;
+    border-radius: 20px;
+    padding-left:20px ;
+    color: white;
+    background:none;
+}
+::placeholder {
+    font-size: 20px;
+    color: white;
+    opacity: .8; 
+  }
+.searchinput img{
+   padding: 4px;
+   cursor: pointer;
+}
+.sortSection  {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 20vw;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left:80px ;
+
+}
+.sortSection label{
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+
+}
+.sortSection select{  
+    width: 10vw;
+    height: 35px;
+    text-align: center;
+    font-size: 21px;
+    border-radius: 10px;
+    background: none;
+    color: white;
+    border: 2px solid white;
+}
+.sortSection select option{  
+    width: 12vw;
+    background: none;
+    font-size: 17px;
+    font-weight: 500;
+    color: black;
+
+}
+
+.tablediv{
+    
+    overflow-y: scroll;
+    height: calc(65vh - 71px);
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+}
+.maincontainer h1{
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px;
+    color: #7ecfcb;
+    margin: 0;
+}
+.maincontainer table{
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    
+    
+}
+.maincontainer table thead{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.maincontainer table thead tr th{
+
+    padding: 8px;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(126,149,207,0.6336659663865547) 40%, rgba(0,212,255,1) 100%);
+    color: white;
+    font-size: 23px;
+    font-weight: 600;
+    border: 1px solid white;
+    
+}
+.maincontainer table tbody tr td{
+   
+    padding: 8px;
+    font-size: 20px;
+    font-weight: 400;
+    border: 1px solid white;
+    color: white;
+    background: rgb(2,0,36);
+    background: linear-gradient(86deg, rgba(2,0,36,1) 0%, rgba(126,200,207,0.46559873949579833) 40%, rgba(0,212,255,1) 100%);
+}
+
+@media  (max-width:600px) {
+    
+    .searchsection{
+        width: 90vw;
+    }
+    .searchinput{
+        width: 78vw;
+        gap: 5px;
+    }
+    .searchinput input{
+        width: 60vw;
+        font-size: 17px;
+    }
+    ::placeholder{
+        font-size: 15px;
+    }
+
+    .sortSection{
+        width: 50vw;
+        gap: 10px;
+        margin-left: 10px;
+    }
+    .sortSection label, select, option{
+        font-size: 15px;
+    }
+    .sortSection select {
+        width: 29vw;
+        height: 25px;
+        font-size: 15px;
+    }
+    .maincontainer{
+        width: 95vw;
+    }
+
+    .maincontainer table thead tr th{
+
+        font-size: 15px;
+    }
+    .maincontainer table tbody tr td{
+        font-size: 15px;
+    }
+    
+}
