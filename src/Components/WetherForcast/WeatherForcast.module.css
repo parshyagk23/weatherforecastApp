@@ -116,7 +116,7 @@
     
 
 
-@media (max-width:600px){
+@media (max-width:450px){
 
     .temp{
         top: 25px;
@@ -135,7 +135,8 @@
         font-size: 15px;
     }
     .weatherdetails{
-        height: 55vh;
+        /* height: 65vh; */
+        height: calc(80vh - 150px);
         width: 81vw;
         padding: 10px 0 20px 20px;
         margin: 0 auto;
@@ -152,7 +153,7 @@
         gap: 25px;
     }
     ._3hoursfrocast{
-        width: 270px;
+        width: 280px;
         height: 125px;
     }
     .Hourlydata p{
