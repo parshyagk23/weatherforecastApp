@@ -1,8 +1,5 @@
 {
-    "rewrites": [
-      {
-        "source": "https://weatherforecast-app-three.vercel.app",
-        "destination": "https://weatherforecast-app-three.vercel.app/Punch"
-      }
-    ]
-  }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}
