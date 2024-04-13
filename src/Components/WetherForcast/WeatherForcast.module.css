@@ -162,3 +162,13 @@
     }
 
 }
+@media (max-width:600px){
+
+    
+    .weatherdetails{
+        height: 75vh;
+        width: 81vw;
+        padding: 10px 0 20px 20px;
+        margin: 0 auto;
+    }
+}
