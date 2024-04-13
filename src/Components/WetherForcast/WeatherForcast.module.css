@@ -98,7 +98,7 @@
     }
 }
 
-@media (max-width:800px){
+@media (max-width:950px){
     .temp{
         position: absolute;
         top: 80px;
@@ -106,7 +106,7 @@
         width: 48vw;
     }
     .weatherdetails{
-        height: 40vh;
+        height: 55vh;
         bottom: 20px;
         top: inherit;
         
