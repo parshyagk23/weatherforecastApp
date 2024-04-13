@@ -14,6 +14,8 @@ export const fetchSearchedLoc = async (location,sortloc) =>
        return responce.data
         
     } catch (error) {
-        return error.message
+        
     }
 }
+
+

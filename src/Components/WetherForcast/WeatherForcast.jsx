@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { FetchWetherForcast } from "../../Apis/FetchWetherForcast";
+import {
+  FetchWetherForcast,
+  Fetch3HoursWetherForcast,
+} from "../../Apis/FetchWetherForcast";
 import styles from "./WeatherForcast.module.css";
 import clear from "./../../assets/bg/clear.jpg";
 import snow from "./../../assets/bg/snow.jpg";
@@ -10,11 +13,13 @@ import rain from "./../../assets/bg/rain.jpg";
 import clouds_night from "./../../assets/bg/clouds-night.jpg";
 import thunderstorm from "./../../assets/bg/thunderstorm.jpg";
 import scatter from "./../../assets/bg/scatter.jpeg";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const WeatherForcast = () => {
   const { state } = useLocation();
   const [weatherData, SetWeatherData] = useState();
-
+  const [_3HourweatherData, Set3HourWeatherData] = useState();
 
   const WeatherList = [
     {
@@ -57,7 +62,7 @@ const WeatherForcast = () => {
     },
     {
       WeatherType: "Humidity",
-      weatherval: (weatherData?.main.humidity) + "%",
+      weatherval: weatherData?.main.humidity + "%",
       svg: (
         <svg
           width="18"
@@ -116,18 +121,6 @@ const WeatherForcast = () => {
       ),
     },
   ];
-  useEffect(() => {
-    fetchWeather();
-  }, []);
-  const fetchWeather = async () => {
-    const lat = state.LocData.lat;
-    const lon = state.LocData.lon;
-    const data = await FetchWetherForcast(lat, lon);
-    if (!data) {
-      console.log(data);
-    }
-    SetWeatherData(data);
-  };
 
   const weathercloudsvg = [
     {
@@ -137,7 +130,7 @@ const WeatherForcast = () => {
           height="56"
           viewBox="0 0 74 56"
           fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+          xmlink="http://www.w3.org/2000/svg"
         >
           <path
             d="M41.4907 14.1486C52.8308 14.1486 59.2622 21.4663 60.1961 30.2996H60.4813C67.7777 30.2996 73.6938 36.0505 73.6938 43.1451C73.6938 50.2396 67.7777 55.9906 60.4813 55.9906H22.5C15.2037 55.9906 9.2875 50.2396 9.2875 43.1451C9.2875 36.0505 15.2037 30.2996 22.5 30.2996H22.7852C23.7283 21.4059 30.1506 14.1486 41.4907 14.1486ZM29.4927 0.201294C36.1909 0.201294 42.0335 4.05075 44.918 9.70872C43.7809 9.56782 42.6363 9.49795 41.4907 9.49951C30.4956 9.49951 22.4816 15.5759 19.6201 24.7765L19.3349 25.7714L19.1233 26.6408L18.3642 26.7802C15.586 27.3521 12.9911 28.61 10.8109 30.4417C8.6307 32.2734 6.93305 34.622 5.86936 37.2779C3.67775 35.9285 1.96912 33.9079 0.991847 31.5099C0.0145745 29.1118 -0.180401 26.4612 0.435265 23.9435C1.05093 21.4258 2.44514 19.1721 4.41524 17.51C6.38533 15.848 8.82861 14.8643 11.3899 14.7019L12.4112 14.6786C13.1206 10.6215 15.2216 6.94655 18.3453 4.29905C21.469 1.65156 25.4158 0.200734 29.4927 0.201294Z"
@@ -162,15 +155,15 @@ const WeatherForcast = () => {
           <g>
             <path
               d="M1.553,39.29h62.896c0.857,0,1.553-0.527,1.553-1.175c0-0.649-0.695-1.176-1.553-1.176H1.553
-		C0.696,36.939,0,37.466,0,38.115C0,38.763,0.696,39.29,1.553,39.29z M64.449,43.989H1.553C0.695,43.989,0,44.515,0,45.165
-		c0,0.646,0.696,1.174,1.553,1.174h62.896c0.857,0,1.553-0.527,1.553-1.174C66.002,44.515,65.307,43.989,64.449,43.989z
-		 M64.449,51.33H1.553C0.695,51.33,0,51.855,0,52.505c0,0.647,0.696,1.176,1.553,1.176h62.896c0.857,0,1.553-0.527,1.553-1.176
-		S65.307,51.33,64.449,51.33z M13.491,23.33c1.434,0,2.838,0.275,4.174,0.819c0.319,0.131,0.68,0.113,0.986-0.047
-		c0.306-0.159,0.526-0.446,0.603-0.782c1.149-5.092,5.599-8.649,10.82-8.649c2.591,0,5.115,0.915,7.105,2.574
-		c0.396,0.332,0.965,0.364,1.396,0.081c2.646-1.737,5.714-2.655,8.873-2.655c8.936,0,16.202,7.268,16.202,16.2
-		c0,0.992-0.104,1.959-0.275,2.902h2.374C65.9,32.826,66,31.861,66,30.871c0-10.229-8.322-18.55-18.552-18.55
-		c-3.335,0-6.582,0.893-9.44,2.591c-2.297-1.676-5.081-2.591-7.936-2.591c-5.885,0-10.961,3.729-12.763,9.216
-		c-1.24-0.37-2.52-0.557-3.82-0.557c-7.195,0-13.072,5.684-13.418,12.793h2.35C2.766,27.959,7.592,23.33,13.491,23.33z"
+    C0.696,36.939,0,37.466,0,38.115C0,38.763,0.696,39.29,1.553,39.29z M64.449,43.989H1.553C0.695,43.989,0,44.515,0,45.165
+    c0,0.646,0.696,1.174,1.553,1.174h62.896c0.857,0,1.553-0.527,1.553-1.174C66.002,44.515,65.307,43.989,64.449,43.989z
+     M64.449,51.33H1.553C0.695,51.33,0,51.855,0,52.505c0,0.647,0.696,1.176,1.553,1.176h62.896c0.857,0,1.553-0.527,1.553-1.176
+    S65.307,51.33,64.449,51.33z M13.491,23.33c1.434,0,2.838,0.275,4.174,0.819c0.319,0.131,0.68,0.113,0.986-0.047
+    c0.306-0.159,0.526-0.446,0.603-0.782c1.149-5.092,5.599-8.649,10.82-8.649c2.591,0,5.115,0.915,7.105,2.574
+    c0.396,0.332,0.965,0.364,1.396,0.081c2.646-1.737,5.714-2.655,8.873-2.655c8.936,0,16.202,7.268,16.202,16.2
+    c0,0.992-0.104,1.959-0.275,2.902h2.374C65.9,32.826,66,31.861,66,30.871c0-10.229-8.322-18.55-18.552-18.55
+    c-3.335,0-6.582,0.893-9.44,2.591c-2.297-1.676-5.081-2.591-7.936-2.591c-5.885,0-10.961,3.729-12.763,9.216
+    c-1.24-0.37-2.52-0.557-3.82-0.557c-7.195,0-13.072,5.684-13.418,12.793h2.35C2.766,27.959,7.592,23.33,13.491,23.33z"
             />
           </g>
         </svg>
@@ -266,6 +259,36 @@ const WeatherForcast = () => {
       ),
     },
   ];
+
+  useEffect(() => {
+    fetchWeather();
+  }, []);
+
+  useEffect(() => {
+    fetch3HoursWeather();
+  }, []);
+
+  const fetchWeather = async () => {
+    const lat = state.LocData.lat;
+    const lon = state.LocData.lon;
+    const data = await FetchWetherForcast(lat, lon);
+    if(!data){
+      return toast.error("Network Error or Something went wrong", {position:'top-center'})
+    }
+    SetWeatherData(data);
+  };
+
+  const fetch3HoursWeather = async () => {
+    const lat = state.LocData.lat;
+    const lon = state.LocData.lon;
+    const data = await Fetch3HoursWetherForcast(lat, lon);
+    if (!data) {
+        return toast.error("Network Error or Something went wrong", {position:'top-center'})
+      
+    }
+    Set3HourWeatherData(data);
+  };
+
   function addZero(num) {
     return (num < 10 ? "0" : "") + num;
   }
@@ -311,12 +334,8 @@ const WeatherForcast = () => {
 
     return formattedDate;
   };
-  useEffect(() => {});
-  useEffect(() => {
-    selectBgImg();
-  }, []);
-  const selectBgImg = () => {
-    const forcast = weatherData?.weather[0].main;
+
+  const selectBgImg = (forcast) => {
     if (forcast === "Clouds") {
       return clouds;
     } else if (
@@ -331,8 +350,8 @@ const WeatherForcast = () => {
       return clear;
     }
   };
-  const selectcloudsvg = () => {
-    const forcast = weatherData?.weather[0].main;
+
+  const selectcloudsvg = (forcast) => {
     if (forcast === "Clouds") {
       return weathercloudsvg[0].clouds;
     } else if (
@@ -348,13 +367,23 @@ const WeatherForcast = () => {
     }
   };
 
-
+  
+  const _3HourlyDate = (dateString) => {
+    const time = dateString.split(" ")[1];
+    const timestamps = time.split(":").slice(0, 2).join(":");
+    const IsAmOrPm= Number(time.slice(0,2))>12?" Pm":' Am'
+    return timestamps+ IsAmOrPm
+  };
 
   return (
     <main
-      style={{ backgroundImage: `url(${selectBgImg()})` }}
+
+      style={{
+        backgroundImage: `url(${selectBgImg(weatherData?.weather[0].main)})`,
+      }}
       className={styles.weathercontainer}
     >
+      <ToastContainer/>
       <section className={styles.temp}>
         <div className={styles.citytemp}>
           <h1>{(((weatherData?.main.temp - 32) * 5) / 9).toFixed(2)}°</h1>
@@ -364,17 +393,16 @@ const WeatherForcast = () => {
                 <h2>{weatherData?.name}</h2>
                 <p>{getWeatherTimezone(weatherData?.dt)}</p>
               </div>
-              <div>{selectcloudsvg()}</div>
+              <div>{selectcloudsvg(weatherData?.weather[0].main)}</div>
             </div>
           </div>
         </div>
       </section>
-     
+
       <section className={styles.weatherdetails}>
-      
-        <p style={{ marginTop: "30px" }}>Weather Details...</p>
+        <p style={{ marginTop: "10px" }}>Weather Details...</p>
         <div>
-          <h4 style={{ marginTop: "40px" }}>
+          <h4 >
             {weatherData?.weather[0].description}
           </h4>
           {WeatherList.map((weather, index) => (
@@ -386,6 +414,22 @@ const WeatherForcast = () => {
               </span>
             </div>
           ))}
+        </div>
+        <div>
+          <h4> 3-hour step Forecast</h4>
+          <div className={styles._3hoursfrocast}>
+          {_3HourweatherData?.map((data, index) => (
+              <div className={styles.Hourlydata}  key={index} >
+                <p>
+                  {_3HourlyDate(data.dt_txt)} 
+                </p>
+                <div>{selectcloudsvg(data?.weather[0].main)}</div>
+                <p >
+                  {(((data?.main.temp - 32) * 5) / 9).toFixed(2)}°
+                </p>
+              </div>
+          ))}
+          </div>
         </div>
       </section>
     </main>

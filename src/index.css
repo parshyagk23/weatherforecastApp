@@ -6,4 +6,13 @@ body{
   box-sizing: border-box;
   font-family: 'poppins' ,sans-serif;
 }
+::-webkit-scrollbar-thumb {
+  color: gray;
+  border-radius: 20px;
+}
 
+::-webkit-scrollbar-track {
+  color: black;
+  border-radius: 20px;
+
+}

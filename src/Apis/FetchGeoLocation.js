@@ -9,10 +9,11 @@ export const fetchlocation = async () =>
         if(!responce){
             return 
         }
-
+       
        return responce.data
         
     } catch (error) {
-        return error.message
+        
     }
 }
+

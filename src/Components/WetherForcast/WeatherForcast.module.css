@@ -34,7 +34,6 @@
     margin: 0;
 }
 .citydata h2{
-    width: 250px;
     font-size: 45px;
     font-weight: 400;
 }
@@ -46,8 +45,7 @@
     position: absolute;
     right: 20px;
     top: 20px;
-    padding-left: 50px;
-    padding-top: 30px;
+    padding: 30px 0 28px 50px;
     border-radius: 20px;
 }
 .weatherdetails p{
@@ -55,7 +53,7 @@
    
 }
 .weatherdetails h4{
-    font-size: 18px;
+    font-size: 20px;
     text-transform: uppercase;
     font-weight: 400;
 
@@ -78,6 +76,27 @@
     display: flex;
     gap: 20px;
 }
+._3hoursfrocast{
+    display: flex;
+    gap: 20px;
+    overflow: scroll;
+    scrollbar-width: none;
+    width: 374px;
+    height: 150px;
+}
+.Hourlydata p{
+    font-size: 20px;
+    margin-bottom:5px
+}
+.Hourlydata{
+    width: 70px;
+    text-align: center;
+}
+@media (max-width:1024px){
+    .citytemp{
+        display: block;
+    }
+}
 
 @media (max-width:800px){
     .temp{
@@ -92,7 +111,10 @@
         top: inherit;
         
     }
+    
 }
+    
+
 
 @media (max-width:600px){
 
@@ -113,16 +135,29 @@
         font-size: 15px;
     }
     .weatherdetails{
-        height: 52vh;
+        height: 55vh;
         width: 81vw;
-        padding-left: 20px;
-        padding-top: 0;
+        padding: 10px 0 20px 20px;
         margin: 0 auto;
+    }
+    .weathers{
+        margin: 10px 15px;
+    }
+    .weatherdetails h4{
+        margin: 17px 0;
     }
     .weathers span {
         width: 117px;
         display: flex;
         gap: 25px;
+    }
+    ._3hoursfrocast{
+        width: 270px;
+        height: 125px;
+    }
+    .Hourlydata p{
+        font-size: 15px;
+        margin-bottom:5px
     }
 
 }
